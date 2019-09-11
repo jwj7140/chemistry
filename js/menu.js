@@ -11,6 +11,15 @@ window.addEventListener('load', function() {
     menu_o.classList.toggle('on');
     menu_c.classList.toggle('on');
     menu_c.classList.toggle('off');
+    // if (s) {
+    //   menu.classList.remove('off');
+    //   menu.classList.add('on');
+    //   s = false;
+    // } else {
+    //   menu.classList.remove('on');
+    //   menu.classList.add('off');
+    //   s = true;
+    // }
   });
 
   menu_c.addEventListener('click', function () {
@@ -20,5 +29,14 @@ window.addEventListener('load', function() {
     menu_o.classList.toggle('on');
     menu_c.classList.toggle('on');
     menu_c.classList.toggle('off');
+    // if (s) {
+    //   menu.classList.remove('off');
+    //   menu.classList.add('on');
+    //   s = false;
+    // } else {
+    //   menu.classList.remove('on');
+    //   menu.classList.add('off');
+    //   s = true;
+    // }
   });
 });
