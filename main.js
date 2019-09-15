@@ -1,8 +1,8 @@
-var http = require('http');
-
 var express = require('express');
 
 var app = express();
+
+app.use('/static', express.static('public'));
 
 app.get('/', function (request, response) {
   var template = `
@@ -11,8 +11,8 @@ app.get('/', function (request, response) {
     <head>
       <meta charset="UTF-8">
       <title>proto</title>
-      <link rel="stylesheet" href="css/1.css">
-      <script src="js/menu.js"></script>
+      <link rel="stylesheet" href="static/css/1.css">
+      <script src="static/js/menu.js"></script>
     </head>
     <body>
       <div id="item_menu">
@@ -25,8 +25,8 @@ app.get('/', function (request, response) {
           </div>
         </div>
         <div id="menu_out">
-          <img src="img/open.png" alt="" class="menu_o on">
-          <img src="img/close.png" alt="" class="menu_c off">
+          <img src="static/img/open.png" alt="" class="menu_o on">
+          <img src="static/img/close.png" alt="" class="menu_c off">
         </div>
       </div>
       <div id="condition">
