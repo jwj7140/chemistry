@@ -1,8 +1,25 @@
 var http = require('http');
+var fs = require('fs');
+var path = require('path')
 
 var express = require('express');
 
 var app = express();
+
+var atom_csv  = fs.readFileSync(path.join(__dirname, 'excel/atoms.csv'));
+var atom_value = atom_csv.toString('utf-8');
+
+var atom_value_splitted = atom_value.split('\n');
+atom_value_splitted.shift()
+var atom_value_2x = atom_value_splitted.map((line) => line.split(','));
+console.log (atom_value_2x[2][2]);
+// var atom_value_object_list = atom_value_2x.map((line) {
+//   return {
+//     '원소번호':
+//   }
+// })
+
+app.use('/static',express.static('public'))
 
 app.get('/', function (request, response) {
   var template = `
@@ -11,8 +28,8 @@ app.get('/', function (request, response) {
     <head>
       <meta charset="UTF-8">
       <title>proto</title>
-      <link rel="stylesheet" href="css/1.css">
-      <script src="js/menu.js"></script>
+      <link rel="stylesheet" href="static/css/1.css">
+      <script src="static/js/menu.js"></script>
     </head>
     <body>
       <div id="item_menu">
@@ -25,8 +42,8 @@ app.get('/', function (request, response) {
           </div>
         </div>
         <div id="menu_out">
-          <img src="img/open.png" alt="" class="menu_o on">
-          <img src="img/close.png" alt="" class="menu_c off">
+          <img src="static/img/open.png" alt="" class="menu_o on">
+          <img src="static/img/close.png" alt="" class="menu_c off">
         </div>
       </div>
       <div id="condition">
