@@ -1,7 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path')
-
+var url = require('url');
 var express = require('express');
 
 var app = express();
@@ -15,9 +15,17 @@ var atom_value_2x = atom_value_splitted.map((line) => line.split(','));
 console.log (atom_value_2x[2][2]);
 // var atom_value_object_list = atom_value_2x.map((line) {
 //   return {
-//     '원소번호':
-//   }
-// })
+//     '원소번호': Number(line[0]),
+//     '원소기호': line[1],
+//     '원소이름': line[2],
+//     '주기': line[3],
+//     '족': line[4],
+//     '원자가 전자수': line[5],
+//     '오비탈전자배치': line[6],
+//     '전기음성도': line[7],
+//     '1차이온화에너지(kJ / mol)': line[8],
+//   };
+// });
 
 app.use('/static',express.static('public'))
 
@@ -30,13 +38,14 @@ app.get('/', function (request, response) {
       <title>proto</title>
       <link rel="stylesheet" href="static/css/1.css">
       <script src="static/js/menu.js"></script>
+      <script src="http://localhost:300search/?id=css"></script>
     </head>
     <body>
       <div id="item_menu">
         <div id="menu_in" class="off">
           <div id="search">
             <input type="text" name="" value="" id="search_text">
-            <button type="button" name="button" id="search_button">검색</button>
+            <button type="button" name="button" id="search_button" onclick="search();">검색</button>
           </div>
           <div id="items">
           </div>
@@ -57,6 +66,14 @@ app.get('/', function (request, response) {
 
   response.writeHead(200);
   response.end(template);
+});
+
+app.get('/search', function (request, response) {
+  var _url = request.url;
+  var querydata = url.parse(_url, true).query;
+  console.log(querydata.id);
+  response.writeHead(200);
+  response.end();
 });
 
 app.get('/favicon.ico', function (request, response) {

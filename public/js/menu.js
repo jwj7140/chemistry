@@ -40,3 +40,13 @@ window.addEventListener('load', function() {
     // }
   });
 });
+
+function search() {
+  var input = document.getElementById("search_text").value
+  var t = document.createElement('script');
+  t.src = `http://localhost:3000/search/?id=${input}`;
+  t.id = input;
+  document.getElementById("search").appendChild(t);
+  setTimeout(function(){},500);
+  document.getElementById(input).remove();
+}
