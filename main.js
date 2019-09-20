@@ -3,7 +3,8 @@ var fs = require('fs');
 var path = require('path')
 var url = require('url');
 var express = require('express');
-
+var cors = require('cors');
+var request = require('request');
 var app = express();
 
 var atom_csv  = fs.readFileSync(path.join(__dirname, 'excel/atoms.csv'));
@@ -12,69 +13,29 @@ var atom_value = atom_csv.toString('utf-8');
 var atom_value_splitted = atom_value.split('\n');
 atom_value_splitted.shift()
 var atom_value_2x = atom_value_splitted.map((line) => line.split(','));
-console.log (atom_value_2x[2][2]);
-// var atom_value_object_list = atom_value_2x.map((line) {
-//   return {
-//     '원소번호': Number(line[0]),
-//     '원소기호': line[1],
-//     '원소이름': line[2],
-//     '주기': line[3],
-//     '족': line[4],
-//     '원자가 전자수': line[5],
-//     '오비탈전자배치': line[6],
-//     '전기음성도': line[7],
-//     '1차이온화에너지(kJ / mol)': line[8],
-//   };
-// });
-
-app.use('/static',express.static('public'))
-
-app.get('/', function (request, response) {
-  var template = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="UTF-8">
-      <title>proto</title>
-      <link rel="stylesheet" href="static/css/1.css">
-      <script src="static/js/menu.js"></script>
-      <script src="http://localhost:300search/?id=css"></script>
-    </head>
-    <body>
-      <div id="item_menu">
-        <div id="menu_in" class="off">
-          <div id="search">
-            <input type="text" name="" value="" id="search_text">
-            <button type="button" name="button" id="search_button" onclick="search();">검색</button>
-          </div>
-          <div id="items">
-          </div>
-        </div>
-        <div id="menu_out">
-          <img src="static/img/open.png" alt="" class="menu_o on">
-          <img src="static/img/close.png" alt="" class="menu_c off">
-        </div>
-      </div>
-      <div id="condition">
-        <div id="condition_title">상태</div>
-        <div id="condition_body">
-        </div>
-      </div>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </body>
-    </html>`;
-
-  response.writeHead(200);
-  response.end(template);
+var atom_value_object_list = atom_value_2x.map((line)  => {
+  return {
+    '원소번호': Number(line[0]),
+    '원소기호': line[1],
+    '원소이름': line[2],
+    '주기': line[3],
+    '족': line[4],
+    '원자가 전자수': line[5],
+    '오비탈전자배치': line[6],
+    '전기음성도': line[7],
+    '1차이온화에너지(kJ / mol)': line[8],
+  };
 });
+
+app.use(cors());
 
 app.get('/search', function (request, response) {
   var _url = request.url;
   var querydata = url.parse(_url, true).query;
   console.log(querydata.id);
-  response.writeHead(200);
-  response.end();
-});
+  var json = JSON.parse('{"result":true, "count":42}');
+  response.json(json);
+})
 
 app.get('/favicon.ico', function (request, response) {
   response.writeHead(404);
