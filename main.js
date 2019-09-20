@@ -20,7 +20,7 @@ var atom_value_object_list = atom_value_2x.map((line)  => {
     '원소이름': line[2],
     '주기': line[3],
     '족': line[4],
-    '원자가 전자수': line[5],
+    '원자가전자수': line[5],
     '오비탈전자배치': line[6],
     '전기음성도': line[7],
     '1차이온화에너지(kJ / mol)': line[8],
@@ -30,10 +30,11 @@ var atom_value_object_list = atom_value_2x.map((line)  => {
 app.use(cors());
 
 app.get('/search', function (request, response) {
+  console.log(atom_value_object_list);
   var _url = request.url;
   var querydata = url.parse(_url, true).query;
   console.log(querydata.id);
-  var json = JSON.parse('{"result":true, "count":42}');
+  var json = JSON.parse(`{"name":3213, "id":42}`);
   response.json(json);
 })
 

@@ -49,10 +49,10 @@ function search() {
     return response.json();
   })
   .then(function(Json) {
+    console.log(Json);
     getjson = Json;
-    console.log(getjson);
     var div = document.createElement('div');
-    div.innerHTML = `${getjson}`;
+    div.innerHTML = getjson;
     document.getElementById("items").appendChild(div);
     // t.src = `http://localhost:3000/search/?id=${input}`;
     // t.id = input;
