@@ -13,7 +13,7 @@ var atom_value = atom_csv.toString('utf-8');
 var atom_value_splitted = atom_value.split('\n');
 atom_value_splitted.shift()
 var atom_value_2x = atom_value_splitted.map((line) => line.split(','));
-var atom_value_object_list = atom_value_2x.map((line)  => {
+var atom_object_list = atom_value_2x.map((line)  => {
   return {
     '원소번호': Number(line[0]),
     '원소기호': line[1],
@@ -30,12 +30,20 @@ var atom_value_object_list = atom_value_2x.map((line)  => {
 app.use(cors());
 
 app.get('/search', function (request, response) {
-  console.log(atom_value_object_list);
   var _url = request.url;
   var querydata = url.parse(_url, true).query;
   console.log(querydata.id);
-  var json = JSON.parse(`{"name":3213, "id":42}`);
-  response.json(json);
+  var a, index=-1;
+  for (a=0; a<atom_object_list.length; a++) {
+    if (atom_object_list[a].원소이름 == querydata.id) {
+      index = a;
+      break;
+    }
+  }
+  if (index != -1) {
+    var json = JSON.parse(`{"원소이름":"${atom_object_list[index].원소이름}", "원소기호":"${atom_object_list[index].원소기호}"}`);
+    response.json(json);
+  }
 })
 
 app.get('/favicon.ico', function (request, response) {

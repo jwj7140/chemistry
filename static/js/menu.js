@@ -50,13 +50,10 @@ function search() {
   })
   .then(function(Json) {
     console.log(Json);
-    getjson = Json;
     var div = document.createElement('div');
-    div.innerHTML = getjson;
+    div.className = 'menuitem';
+    div.innerHTML = Json.원소이름 + ":" +Json.원소기호;
     document.getElementById("items").appendChild(div);
-    // t.src = `http://localhost:3000/search/?id=${input}`;
-    // t.id = input;
-    // setTimeout(function(){},500);
     // document.getElementById(input).remove();
   });
 }
