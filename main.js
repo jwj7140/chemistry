@@ -4,7 +4,6 @@ var path = require('path')
 var url = require('url');
 var express = require('express');
 var cors = require('cors');
-var request = require('request');
 var app = express();
 
 var atom_csv  = fs.readFileSync(path.join(__dirname, 'excel/atoms.csv'));
@@ -53,4 +52,5 @@ app.get('/favicon.ico', function (request, response) {
 
 app.listen(3000, function () {
   console.log('서버가 시작되었습니다.');
+  // console.log(atom_object_list);
 });

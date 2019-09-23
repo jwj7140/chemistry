@@ -52,8 +52,28 @@ function search() {
     console.log(Json);
     var div = document.createElement('div');
     div.className = 'menuitem';
-    div.innerHTML = Json.원소이름 + ":" +Json.원소기호;
+    div.ondblclick = function () {
+      click_menu_item(Json);
+    }
+    div.innerHTML = `<img src="static/img/atoms/${Json.원소기호}.png" class="menuitem_img"><div class="menuitem_name">${Json.원소이름}:${Json.원소기호}</div>`;
     document.getElementById("items").appendChild(div);
     // document.getElementById(input).remove();
   });
+}
+var count = 0;
+function click_menu_item(Json) {
+  var create = document.createElement('div');
+  create.id = count;
+  create.className = 'labitem';
+  // create.onclick = function () {
+  //   drag(this);
+  // }
+  // create.onmouseup = function () {
+  //   drop();
+  // }
+  create.style.top = '30px';
+  create.style.left = '30px';
+  create.innerHTML = `<img src ="static/img/atoms/${Json.원소기호}.png" class="labitem_img" onclick="drag(${count});"><div class="labitem_name" onclick="drag(${count});">${Json.원소이름}</div>`;
+  document.getElementById("laboratory").appendChild(create);
+  count++;
 }
