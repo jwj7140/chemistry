@@ -27,8 +27,3 @@ function drag (here) {
       }, 50);
   }
 }
-
-// document.onmouseup  = function() {
-//   console.log('end');
-//   mcount++;
-// }
