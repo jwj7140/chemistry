@@ -68,12 +68,12 @@ function click_menu_item(Json) {
   // create.onclick = function () {
   //   drag(this);
   // }
-  // create.onmouseup = function () {
-  //   drop();
-  // }
+  create.onmousedown = function () {
+    drag(this);
+  }
   create.style.top = '30px';
   create.style.left = '30px';
-  create.innerHTML = `<img src ="static/img/atoms/${Json.원소기호}.png" class="labitem_img" onclick="drag(${count});"><div class="labitem_name" onclick="drag(${count});">${Json.원소이름}</div>`;
+  create.innerHTML = `<div class="labitem_img" style="content: url(static/img/atoms/${Json.원소기호}.png)"></div>${Json.원소이름}`;
   document.getElementById("laboratory").appendChild(create);
   count++;
 }
