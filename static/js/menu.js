@@ -1,43 +1,21 @@
 window.addEventListener('load', function() {
-  // var s = true;
-  var menu_o = document.querySelector('.menu_o');
-  var menu_c = document.querySelector('.menu_c');
-  var menu = document.querySelector('#menu_in');
+  var s = true;
+  var menu = document.getElementById('item_menu');
+  var menu_b = document.getElementById('menu_b');
+  var menu_i = document.getElementById('menu_in');
 
-  menu_o.addEventListener('click', function () {
-    menu.classList.toggle('off');
-    menu.classList.toggle('on');
-    menu_o.classList.toggle('off');
-    menu_o.classList.toggle('on');
-    menu_c.classList.toggle('on');
-    menu_c.classList.toggle('off');
-    // if (s) {
-    //   menu.classList.remove('off');
-    //   menu.classList.add('on');
-    //   s = false;
-    // } else {
-    //   menu.classList.remove('on');
-    //   menu.classList.add('off');
-    //   s = true;
-    // }
-  });
-
-  menu_c.addEventListener('click', function () {
-    menu.classList.toggle('off');
-    menu.classList.toggle('on');
-    menu_o.classList.toggle('off');
-    menu_o.classList.toggle('on');
-    menu_c.classList.toggle('on');
-    menu_c.classList.toggle('off');
-    // if (s) {
-    //   menu.classList.remove('off');
-    //   menu.classList.add('on');
-    //   s = false;
-    // } else {
-    //   menu.classList.remove('on');
-    //   menu.classList.add('off');
-    //   s = true;
-    // }
+  menu_b.addEventListener('click', function () {
+    menu_i.classList.toggle('off');
+    menu_i.classList.toggle('on');
+    if (s) {
+      menu_b.src = 'static/img/close.png';
+      menu.style.height = "30%"
+      s = false;
+    } else {
+      menu_b.src = 'static/img/open.png'
+      menu.style.height = "0%";
+      s = true;
+    }
   });
 });
 
@@ -55,7 +33,7 @@ function search() {
     div.ondblclick = function () {
       click_menu_item(Json);
     }
-    div.innerHTML = `<img src="static/img/atoms/${Json.원소기호}.png" class="menuitem_img"><div class="menuitem_name">${Json.원소이름}:${Json.원소기호}</div>`;
+    div.innerHTML = `<img src="static/img/${Json.종류}/${Json.기호}.png" class="menuitem_img"><div class="menuitem_name">${Json.이름}:${Json.기호}</div>`;
     document.getElementById("items").appendChild(div);
     // document.getElementById(input).remove();
   });
@@ -65,15 +43,12 @@ function click_menu_item(Json) {
   var create = document.createElement('div');
   create.id = count;
   create.className = 'labitem';
-  // create.onclick = function () {
-  //   drag(this);
-  // }
   create.onmousedown = function () {
     drag(this);
   }
   create.style.top = '30px';
   create.style.left = '30px';
-  create.innerHTML = `<div class="labitem_img" style="content: url(static/img/atoms/${Json.원소기호}.png)"></div>${Json.원소이름}`;
+  create.innerHTML = `<div class="labitem_img" style="content: url(static/img/${Json.종류}/${Json.기호}.png)"></div>`;
   document.getElementById("laboratory").appendChild(create);
   count++;
 }

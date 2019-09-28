@@ -3,7 +3,6 @@
 }
 
 html {
-  width:
 }
 body {
   margin: 0;
@@ -21,7 +20,7 @@ body {
   position: fixed;
   z-index: 100000;
   width: 100%;
-  height: 30%;
+  height: 0%;
 }
 .menuitem {
   display: flex;
@@ -46,6 +45,9 @@ body {
 .labitem_img {
   width: 100%;
   height: 75%;
+}
+.select {
+  border: 1px solid black;
 }
 #menu_in {
   border: 1px solid black;

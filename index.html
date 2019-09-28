@@ -5,10 +5,12 @@
   <title>proto</title>
   <link rel="stylesheet" href="static/css/1.css">
   <script src="static/js/menu.js"></script>
-  <script src="static/js/lab_item.js"></script>
+  <script src="static/js/lab_item_move.js"></script>
+  <script src="static/js/beaker.js"></script>
+  <script src="static/js/background.js"></script>
 </head>
 <body>
-  <div id="item_menu">
+  <div id="item_menu" class="off">
     <div id="menu_in" class="off">
       <div id="search">
         <input type="text" name="" value="" id="search_text">
@@ -18,8 +20,8 @@
       </div>
     </div>
     <div id="menu_out">
-      <img src="static/img/open.png" alt="" class="menu_o on">
-      <img src="static/img/close.png" alt="" class="menu_c off">
+      <img src="static/img/open.png" alt="" id="menu_b" class="on">
+      <!-- <img src="static/img/close.png" alt="" id="menu_c"class="off"> -->
     </div>
   </div>
   <div id="laboratory">
