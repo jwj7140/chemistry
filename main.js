@@ -77,7 +77,8 @@ app.get ('/beaker', function() {
     }
   }
   var Json = JSON.parse(`{"이름":"${information[1][a].이름}", "분자식":"${information[1][a].이름}", "질량수":"${information[1][a].질량수}", "녹는점":"${information[1][a].녹는점}", "끓는점":"${information[1][a].끓는점}"}`);
-})
+  response.json(json);
+});
 
 app.get('/favicon.ico', function (request, response) {
   response.writeHead(404);

@@ -44,7 +44,7 @@ function search() {
 var count = 0;
 function click_menu_item(Json) {
   if (Json.종류 == 'molecule') {
-    createbeaker(Json);
+    createbeaker(Json.이름);
   } else if (Json.종류 == 'atom') {
     var create = document.createElement('div');
     create.id = count;
