@@ -38,7 +38,7 @@ function search() {
     } else if (Json.종류 == 'molecule') {
       div.innerHTML = `<img src="static/img/${Json.종류}/${Json.이름}.png" class="menuitem_img"><div class="menuitem_name">${Json.이름}</div>`;
     }
-    document.getElementById("items").appendChild(div);
+    document.getElementById("items").prepend(div);
   });
 }
 var count = 0;
