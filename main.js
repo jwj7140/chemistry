@@ -35,7 +35,7 @@ var molecule_object_list = molecule_value_2x.map((line)  => {
   return {
     '종류': line[0],
     '이름': line[1],
-    '분자식': line[2],
+    '기호': line[2],
     '질량수': line[3],
     '녹는점': line[4],
     '끓는점': line[5],
@@ -55,7 +55,7 @@ app.get('/search', function (request, response) {
   for (a=0; a<information.length; a++) {
     for (b=0; b<information[a].length; b++) {
       if (information[a][b].이름 == querydata.id) {
-        index = [a, b];
+        index = 1;
         break;
       }
     }
@@ -65,6 +65,18 @@ app.get('/search', function (request, response) {
     var json = JSON.parse(`{"종류":"${information[a][b].종류}", "이름":"${information[a][b].이름}", "기호":"${information[a][b].기호}"}`);
     response.json(json);
   }
+})
+
+app.get ('/beaker', function() {
+  var _url = request.url;
+  var querydata = url.parse(_url, true).query;
+  var a;
+  for (a=0; a<information[1].length; a++) {
+    if (querydata == information[1][a].이름) {
+      break;
+    }
+  }
+  var Json = JSON.parse(`{"이름":"${information[1][a].이름}", "분자식":"${information[1][a].이름}", "질량수":"${information[1][a].질량수}", "녹는점":"${information[1][a].녹는점}", "끓는점":"${information[1][a].끓는점}"}`);
 })
 
 app.get('/favicon.ico', function (request, response) {
