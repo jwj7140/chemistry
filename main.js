@@ -35,7 +35,7 @@ var molecule_object_list = molecule_value_2x.map((line)  => {
   return {
     '종류': line[0],
     '이름': line[1],
-    '분자식': line[2],
+    '기호': line[2],
     '질량수': line[3],
     '녹는점': line[4],
     '끓는점': line[5],
