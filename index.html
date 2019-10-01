@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>proto</title>
-  <link rel="stylesheet" href="static/css/1.css">
-  <script src="static/js/menu.js"></script>
-  <script src="static/js/lab_item_move.js"></script>
-  <script src="static/js/beaker.js"></script>
-  <script src="static/js/background.js"></script>
-</head>
-<body>
-  <div id="item_menu" class="off">
-    <div id="menu_in" class="off">
-      <div id="search">
-        <input type="text" name="" value="" id="search_text">
-        <button type="button" name="button" id="search_button" onclick="search();">검색</button>
+  <head>
+    <meta charset="UTF-8">
+    <title>proto</title>
+    <link rel="stylesheet" href="static/css/1.css">
+    <script src="static/js/menu.js"></script>
+    <script src="static/js/beaker.js"></script>
+    <script src="static/js/background.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
+    <script src="static/js/molecule.js"></script>
+  </head>
+  <body>
+    <div id="item_menu">
+      <div id="menu_in" class="off">
+        <div id="search">
+          <input type="text" name="" value="" id="search_text">
+          <button type="button" name="button" id="search_button" onclick="search();">검색</button>
+        </div>
+        <div id="items">
+        </div>
       </div>
-      <div id="items">
+      <div id="menu_out">
+        <img src="static/img/menu/open.png" alt="" id="menu_b" class="on">
       </div>
     </div>
-    <div id="menu_out">
-      <img src="static/img/menu/open.png" alt="" id="menu_b" class="on">
+    <div id="laboratory">
     </div>
-  </div>
-  <div id="laboratory">
-
-  </div>
-  <div id="condition">
-    <div id="condition_title">상태</div>
-    <div id="condition_body">
+    <div id="condition">
+      <div id="condition_title">상태</div>
+      <div id="condition_body">
+      </div>
     </div>
-  </div>
+  </body>
 </html>

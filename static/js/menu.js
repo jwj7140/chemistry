@@ -43,19 +43,11 @@ function search() {
 }
 var count = 0;
 function click_menu_item(Json) {
+  console.log("sdsdsdsdsd");
   if (Json.종류 == 'molecule') {
     createbeaker(Json.이름);
   } else if (Json.종류 == 'atom') {
-    var create = document.createElement('div');
-    create.id = count;
-    create.className = 'labitem';
-    create.onmousedown = function () {
-      drag(this);
-    }
-    create.style.top = '30px';
-    create.style.left = '30px';
-    create.innerHTML = `<div class="labitem_img" style="content: url(static/img/${Json.종류}/${Json.기호}.png)"></div>`;
-    document.getElementById("laboratory").appendChild(create);
+
   }
   count++;
 }

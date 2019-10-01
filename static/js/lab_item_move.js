@@ -1,10 +1,14 @@
+var bmx;
+var bmy;
 var mx;
 var my;
 var bid;
 var selectelement;
 document.onmousemove = function(e){
-    mx = e.pageX;
-    my = e.pageY;
+    bmx = mx;
+    bmy = my;
+    mx=e.pageX;
+    myy=e.pageY;
 }
 document.onmouseup = function() {
   clearInterval(bid);
