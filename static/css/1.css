@@ -45,7 +45,7 @@ body {
 }
 #laboratory {
   width:100%;
-  height:682px;
+  height:712px;
 }
 #lab_canvas {
   /* width:100%;
@@ -103,7 +103,7 @@ body {
   /* bottom: 5px;
   right: 5px; */
   width: 100%;
-  height: 230px;
+  height: 215px;
 }
 #condition_title {
   display: flex;

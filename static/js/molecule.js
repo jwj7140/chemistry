@@ -1,8 +1,3 @@
-var Engine = Matter.Engine,
-    Render = Matter.Render,
-    World = Matter.World,
-    Bodies = Matter.Bodies;
-
 var move = Array();
 var count = 0;
 var sprite = Array();
@@ -27,7 +22,7 @@ function create(Json) {
   var a = count;
   move[a] = 0
   sprite[count] = PIXI.Sprite.fromImage(`static/img/${Json.종류}/${Json.이름}.png`);
-  sprite[count].position.set(100,0); //-250 -300
+  sprite[count].position.set(100,200); //-250 -300
   sprite[count].interactive = true;
   sprite[count].on('mousedown', function() {
     clickmovesp(a);
@@ -39,7 +34,6 @@ function create(Json) {
   console.log(count);
   count++;
 }
-
 function clickmovesp (a) {
   if (bid == 0) {
     bid = setInterval(function() {
@@ -52,7 +46,7 @@ function clickmovesp (a) {
       } else {
         sprite[a].x = mx-sprite[a].width/2;
       }
-      if (sprite[a].height/2+my>682) {
+      if (sprite[a].height/2+my>712) {
         console.log("way!3");
         // sprite.y = 681-sprite.height;
       } else if (my-sprite[a].height/2<0) {
@@ -68,7 +62,7 @@ function clickmovesp (a) {
 window.addEventListener('load', function() {
   var a;
   var laboratory = document.getElementById("laboratory");
-  var renderer = PIXI.autoDetectRenderer(1903, 682, {backgroundColor : 0x1099bb});
+  var renderer = PIXI.autoDetectRenderer(1903, 712, {backgroundColor : 0x1099bb});
   laboratory.appendChild(renderer.view);
   // create the root of the scene graph
   var stage = new PIXI.Container();
