@@ -1,3 +1,8 @@
+var Engine = Matter.Engine,
+    Render = Matter.Render,
+    World = Matter.World,
+    Bodies = Matter.Bodies;
+
 var move = Array();
 var count = 0;
 var sprite = Array();
