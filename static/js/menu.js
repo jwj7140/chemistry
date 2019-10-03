@@ -31,23 +31,9 @@ function search() {
     var div = document.createElement('div');
     div.className = 'menuitem';
     div.ondblclick = function () {
-      click_menu_item(Json);
+      create(Json);
     }
-    if (Json.종류 == 'atom') {
-      div.innerHTML = `<img src="static/img/${Json.종류}/${Json.기호}.png" class="menuitem_img"><div class="menuitem_name">${Json.이름}</div>`;
-    } else if (Json.종류 == 'molecule') {
-      div.innerHTML = `<img src="static/img/${Json.종류}/${Json.이름}.png" class="menuitem_img"><div class="menuitem_name">${Json.이름}</div>`;
-    }
+    div.innerHTML = `<img src="static/img/${Json.종류}/${Json.이름}.png" class="menuitem_img"><div class="menuitem_name">${Json.이름}</div>`;
     document.getElementById("items").prepend(div);
   });
-}
-var count = 0;
-function click_menu_item(Json) {
-  console.log("sdsdsdsdsd");
-  if (Json.종류 == 'molecule') {
-    createbeaker(Json.이름);
-  } else if (Json.종류 == 'atom') {
-
-  }
-  count++;
 }

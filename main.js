@@ -34,7 +34,7 @@ var molecule_value_2x = molecule_value_splitted.map((line) => line.split(','));
 var molecule_object_list = molecule_value_2x.map((line)  => {
   return {
     '종류': line[0],
-    '기호': line[1],
+    '분자식': line[1],
     '이름': line[2],
     '질량수': line[3],
     '녹는점': line[4],
@@ -45,9 +45,23 @@ var molecule_object_list = molecule_value_2x.map((line)  => {
     '고체색상': line[9],
   };
 });
+
+var tool_csv  = fs.readFileSync(path.join(__dirname, 'excel/tool.csv'));
+var tool_value = tool_csv.toString('utf-8');
+var tool_value_splitted = tool_value.split('\n');
+tool_value_splitted.shift()
+var tool_value_2x = tool_value_splitted.map((line) => line.split(','));
+var tool_object_list = tool_value_2x.map((line)  => {
+  return {
+    '종류': line[0],
+    '이름': line[1],
+    '분류': line[2],
+  };
+});
 var information = new Array();
 information[0] = atom_object_list;
 information[1] = molecule_object_list;
+information[2] = tool_object_list;
 
 app.use(cors());
 
@@ -66,23 +80,27 @@ app.get('/search', function (request, response) {
     if(index != -1) break;
   }
   if (index != -1) {
-    var json = JSON.parse(`{"종류":"${information[a][b].종류}", "이름":"${information[a][b].이름}", "기호":"${information[a][b].기호}"}`);
+    if (a == 0) {
+      var json = JSON.parse(`{"종류":"${information[a][b].종류}", "이름":"${information[a][b].기호}"}`);
+    } else {
+      var json = JSON.parse(`{"종류":"${information[a][b].종류}", "이름":"${information[a][b].이름}"}`);
+    }
     response.json(json);
   }
 })
 
-app.get ('/molecule', function(request, response) {
-  var _url = request.url;
-  var querydata = url.parse(_url, true).query;
-  var a;
-  for (a=0; a<information[1].length; a++) {
-    if (querydata.id == information[1][a].이름) {
-      break;
-    }
-  }
-  var json = JSON.parse(`{"이름":"${information[1][a].이름}", "분자식":"${information[1][a].기호}"}`);
-  response.json(json);
-});
+// app.get ('/molecule', function(request, response) {
+//   var _url = request.url;
+//   var querydata = url.parse(_url, true).query;
+//   var a;
+//   for (a=0; a<information[1].length; a++) {
+//     if (querydata.id == information[1][a].이름) {
+//       break;
+//     }
+//   }
+//   var json = JSON.parse(`{"이름":"${information[1][a].이름}", "분자식":"${information[1][a].기호}"}`);
+//   response.json(json);
+// });
 
 app.get('/favicon.ico', function (request, response) {
   response.writeHead(404);
