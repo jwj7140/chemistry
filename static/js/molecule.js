@@ -38,19 +38,19 @@ function clickmovesp (a) {
   if (bid == 0) {
     bid = setInterval(function() {
       if (sprite[a].width/2+mx>1903) {
-        console.log("way!1");
+        // console.log("way!1");
         // sprite.x = 1902-sprite.width;
       } else if (mx-sprite[a].width/2<0) {
-        console.log("way!2");
+        // console.log("way!2");
         // sprite.x = 1;
       } else {
         sprite[a].x = mx-sprite[a].width/2;
       }
       if (sprite[a].height/2+my>712) {
-        console.log("way!3");
+        // console.log("way!3");
         // sprite.y = 681-sprite.height;
       } else if (my-sprite[a].height/2<0) {
-        console.log("way!4");
+        // console.log("way!4");
         // sprite.y = 1;
       } else {
         sprite[a].y = my-sprite[a].height/2;

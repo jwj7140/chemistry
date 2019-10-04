@@ -25,8 +25,10 @@ function gravity(n) {
             crash[0] = sprite[a].y;
             break;
           }
-        } else if (sprite[n].y-sprite[a].y < sprite[a].height-2 && sprite[n].y-sprite[a].y > -1*sprite[n].height+2) {
+        }
+        if (sprite[a].y + sprite[a].height > sprite[n].y && sprite[a].y-sprite[a].height < sprite[n].y + sprite[n].height && sprite[n].y-sprite[a].y < sprite[a].height-30 && sprite[n].y-sprite[a].y > -1*sprite[n].height+30) {
           if (n != a) {
+            console.log (n+"yp");
             if (move[n] == 0) {
               if (sprite[n].x > sprite[a].x) {        //왼쪽에서 밀림
                 sprite[n].x = sprite[a].x+sprite[a].width;
@@ -34,7 +36,6 @@ function gravity(n) {
                 sprite[n].x = sprite[a].x-sprite[n].width;
               }
             }
-            console.log (n+"yp");
             break;
           }
         }
