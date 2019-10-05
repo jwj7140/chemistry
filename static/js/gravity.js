@@ -9,11 +9,14 @@ function gravity(n) {
   setInterval (function() {
     if (move[n] == 0) {
       if (sprite[n].height+sprite[n].y>crash[0]) {
-        sprite[n].y = crash[0]-sprite[n].height+1;
+        move(n, 99999, crash[0]-sprite[n].height+1);
         falls[n]=0;
       } else {
         falls[n] = Math.min(10000, Math.max(-10000, falls[n] + gravity * delta / 100));
-        sprite[n].y += falls[n];
+        move(n, 99999, sprite[n].y+falls[n]);
+        if (n == 3) {
+          console.log(falls[n]+ "2");
+        }
       }
     }
     b=-1;
@@ -31,9 +34,9 @@ function gravity(n) {
             console.log (n+"yp");
             if (move[n] == 0) {
               if (sprite[n].x > sprite[a].x) {        //왼쪽에서 밀림
-                sprite[n].x = sprite[a].x+sprite[a].width;
+                move(n, sprite[a].x+sprite[a].width, 99999);
               } else if (sprite[n].x < sprite[a].x) {   //오른쪽에서 밀림
-                sprite[n].x = sprite[a].x-sprite[n].width;
+                move(n, sprite[a].x-sprite[n].width, 99999);
               }
             }
             break;
@@ -46,4 +49,26 @@ function gravity(n) {
       crash[0] = 712;
     }
   }, 50)
+}
+
+function move (n, x, y) {
+  if (x != 99999) {
+    if (x>1903) {
+      // console.log("way!1");
+      // sprite.x = 1902-sprite.width;
+    } else if (x<0) {
+      // console.log("way!2");
+      // sprite.x = 1;
+    } else {
+      sprite[n].x = x;
+    }
+  }
+  if (y != 99999) {
+    if (y>712) {
+      // console.log("way!3");
+      // sprite.y = 681-sprite.height;
+    } else {
+      sprite[n].y = y;
+    }
+  }
 }
