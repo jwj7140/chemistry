@@ -63,11 +63,11 @@ function move (n,x,y) {         /*52 ~ 72 요소 이동 함수*/
     }
   }
   if (y != 99999) {
-    if (y<0) {
-      // console.log("way!2");
-      // sprite.x = 1;
-    } else {
-      sprite[n].y = y;
-    }
+  if (x<0) {
+    // console.log("way!2");
+    // sprite.x = 1;
+  } else {
+    sprite[n].y = y;
+  }
   }
 }
