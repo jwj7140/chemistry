@@ -1,3 +1,9 @@
+/*
+  이 js파일은 molecule파일의 생성으로 애물단지가 된 파일이다.
+  쓸모는 없으나 참고,복붙을 위해 삭제하지 않았다.
+*/
+
+
 var beaker = new Array(10);
 var a, b;
 for (a=0; a<beaker.length; a++) {

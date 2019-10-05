@@ -6,7 +6,7 @@ var express = require('express');
 var cors = require('cors');
 var app = express();
 
-var atom_csv  = fs.readFileSync(path.join(__dirname, 'excel/atoms.csv'));
+var atom_csv  = fs.readFileSync(path.join(__dirname, 'excel/atoms.csv'));     /*9 ~ 27 원자csv에 맞게 객체화*/
 var atom_value = atom_csv.toString('utf-8');
 var atom_value_splitted = atom_value.split('\n');
 atom_value_splitted.shift()
@@ -26,7 +26,7 @@ var atom_object_list = atom_value_2x.map((line)  => {
   };
 });
 
-var molecule_csv  = fs.readFileSync(path.join(__dirname, 'excel/molecule.csv'));
+var molecule_csv  = fs.readFileSync(path.join(__dirname, 'excel/molecule.csv'));    /*29 ~ 47 분자csv에 맞게 객체화*/
 var molecule_value = molecule_csv.toString('utf-8');
 var molecule_value_splitted = molecule_value.split('\n');
 molecule_value_splitted.shift()
@@ -46,7 +46,7 @@ var molecule_object_list = molecule_value_2x.map((line)  => {
   };
 });
 
-var tool_csv  = fs.readFileSync(path.join(__dirname, 'excel/tool.csv'));
+var tool_csv  = fs.readFileSync(path.join(__dirname, 'excel/tool.csv'));     /*49 ~ 60 도구csv에 맞게 객체화*/
 var tool_value = tool_csv.toString('utf-8');
 var tool_value_splitted = tool_value.split('\n');
 tool_value_splitted.shift()
@@ -58,19 +58,21 @@ var tool_object_list = tool_value_2x.map((line)  => {
     '분류': line[2],
   };
 });
-var information = new Array();
+
+var information = new Array();                          /*62 ~ 65 위에서 객체화한 변수를 묶어 배열로 저장*/
 information[0] = atom_object_list;
 information[1] = molecule_object_list;
 information[2] = tool_object_list;
 
 app.use(cors());
+app.use('/static', express.static('static'));
 
-app.get('/search', function (request, response) {
+app.get('/search', function (request, response) {       /*69 ~ 91 메뉴 검색 통신*/
   var _url = request.url;
   var querydata = url.parse(_url, true).query;
   console.log(querydata.id);
-  var a,b, index=-1;
-  for (a=0; a<information.length; a++) {
+  var a,b, index=-1;                                     /*검색결과 없음을 위해 index초기값 설정*/
+  for (a=0; a<information.length; a++) {                /*74 ~ 82 배열에서 쿼리값과 일치한 객체의 번호를 탐색*/
     for (b=0; b<information[a].length; b++) {
       if (information[a][b].이름 == querydata.id) {
         index = 1;
@@ -79,13 +81,13 @@ app.get('/search', function (request, response) {
     }
     if(index != -1) break;
   }
-  if (index != -1) {
-    if (a == 0) {
+  if (index != -1) {                                    /*83 ~ 90 검색결과가 있다면 */
+    if (a == 0) {                                       /*원소를 불러오려 하면 다른 방식으로 json을 생성*/
       var json = JSON.parse(`{"종류":"${information[a][b].종류}", "이름":"${information[a][b].기호}"}`);
     } else {
       var json = JSON.parse(`{"종류":"${information[a][b].종류}", "이름":"${information[a][b].이름}"}`);
     }
-    response.json(json);
+    response.json(json);                                /*fetch에 응답*/
   }
 })
 
@@ -102,10 +104,14 @@ app.get('/search', function (request, response) {
 //   response.json(json);
 // });
 
+app.get('/', function (request, response) {
+  response.end (fs.readFileSync(__dirname + "/index.html"));
+});
+
 app.get('/favicon.ico', function (request, response) {
-  response.writeHead(404);
+  response.writeHead( 404);
   response.end();
 });
-app.listen(3000, function () {
+app.listen(3000, function () {                                     /*110 ~ 112 서버 실행*/
   console.log('서버가 시작되었습니다.');
 });
