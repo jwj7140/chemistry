@@ -1,65 +1,45 @@
-/*
-  이 js파일은 molecule파일의 생성으로 애물단지가 된 파일이다.
-  쓸모는 없으나 참고,복붙을 위해 삭제하지 않았다.
-*/
+var bc = 0;
+var wc = 0;
+
+function createbeaker (a) {
+  beaker[bc] = a;
+  bc+=1;
 
 
-var beaker = new Array(10);
-var a, b;
-for (a=0; a<beaker.length; a++) {
-  beaker[a] = {용질: '', 설정: ''};
-  beaker[a].용질 = Array(6);
-  for (b=0; b<beaker[a].용질.length; b++) {
-    beaker[a].용질[b] = {분자이름: '', 분자식: '', 질량: '', 질량수: '', 녹는점: '', 끓는점: '', 밀도: '', 기체색상: '', 액체색상: '', 고체색상: ''};
-  }
-  beaker[a].설정 = {id: '', 분자이름: '', 분자식: '', 질량: '', 질량수: '', 녹는점: '', 끓는점: '', 온도: '', 밀도: '', 기체색상: '', 액체색상: '', 고체색상: ''};
-}
-next = {id: 0, solute: 0};
-
-
-function createbeaker(name) {
-  fetch(`http://localhost:3000/molecule/?id=${name}`)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(Json) {
-      console.log('sadsad');
-      console.log(Json);
-      beaker[next.id].설정.id = count;
-      beaker[next.id].설정.분자이름 = Json.이름;
-      beaker[next.id].설정.분자식 = Json.분자식;
-      beaker[next.id].설정.질량수 = Json.질량수;
-      beaker[next.id].설정.질량 = Json.분자식;
-      beaker[next.id].설정.녹는점 = Json.녹는점;
-      beaker[next.id].설정.끓는점 = Json.끓는점;
-      beaker[next.id].설정.온도 = Json.온도;
-      beaker[next.id].설정.밀도 = Json.밀도;
-      beaker[next.id].설정.기체색상 = Json.액체색상;
-      beaker[next.id].설정.고체색상 = Json.고체색상;
-      var create = document.createElement('div');
-      create.id = count;
-      create.className = 'labitem beaker';
-      create.onmousedown = function () {
-        drag(this);
-      }
-      create.style.top = '30px';
-      create.style.left = '30px';
-      create.innerHTML =`<div class="labitem_img" style="content: url(static/img/tool/beaker.png)"></div>`;
-      document.getElementById("laboratory").appendChild(create);
-      count++;
-      next.id++;
-      console.log(beaker);
-    })
+  // var n = [count, count+1, count+2, count+3, count+4];
+  // count += 5;
+  // sprite[n[0]] = new PIXI.Graphics();
+  // sprite[n[0]].beginFill(0xff0000);
+  // sprite[n[0]].drawRect(0, 0, 2, 160);
+  // black[n[0]] = 0;
+  // sprite[n[1]] = new PIXI.Graphics();
+  // sprite[n[1]].beginFill(0xff0000);
+  // sprite[n[1]].drawRect(0, 0, 2, 35);
+  // sprite[n[1]].rotation = -10.03;
+  // black[n[1]] = 0;
+  // sprite[n[2]] = new PIXI.Graphics();
+  // sprite[n[2]].beginFill(0xff0000);
+  // sprite[n[2]].drawRect(0, 0, 2, 160);
+  // black[n[2]] = 0;
+  // sprite[n[3]] = new PIXI.Graphics();
+  // sprite[n[3]].beginFill(0xff0000);
+  // sprite[n[3]].drawRect(0, 0, 2, 30);
+  // sprite[n[3]].rotation = 9.7;
+  // black[n[3]] = 0;
+  // sprite[n[4]] = new PIXI.Graphics();
+  // sprite[n[4]].beginFill(0xff0000);
+  // sprite[n[4]].drawRect(0, 0, 160, 2);
+  // black[n[4]] = 0;
+  // setInterval(function() {
+  //   move(n[4], sprite[a].x+20, sprite[a].y+sprite[a].height-3);
+  //   move(n[0], sprite[a].x+21, sprite[a].y+48); //21,
+  //   move(n[1], sprite[a].x+24, sprite[a].y+50);
+  //   move(n[2], sprite[a].x+sprite[a].width-10, sprite[a].y+48); //21,
+  //   move(n[3], sprite[a].x+sprite[a].width-10, sprite[a].y+44);
+  // }, 25);
 }
 
-// var create = document.createElement('div');
-// create.id = count;
-// beaker[]
-// create.className = 'labitem';
-// create.onmousedown = function () {
-//   drag(this);
-// }
-// create.style.top = '30px';
-// create.style.left = '30px';
-// create.innerHTML = `<div class="labitem_img" style="content: url(static/img/${Json.종류}/${Json.기호}.png)"></div>`;
-// document.getElementById("laboratory").appendChild(create);
+function createwater(a) {
+  water[wc] = a;
+  wc+=1;
+}

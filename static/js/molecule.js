@@ -1,6 +1,8 @@
-var move = Array(33333);
+var move = Array();
 var count = 0;
 var sprite = Array();
+var water = Array();
+var beaker = Array();
 var mx,my;
 document.onmousemove = function(e){                 /*마우스의 좌표 감지*/
   mx=e.pageX;
@@ -27,9 +29,15 @@ function create(Json) {                 /*21 ~ 36 laboratory에서 요소를 생
     falls[a] = 0;
     move[a] = 1;
   });
-  gravity(a);                                   /*83 ~ 90 요소에 중력 적용*/
-  console.log(count);
+  if (Json.이름 == "beaker") {
+    createbeaker(a);
+  } else if (Json.이름 == "water") {
+    createwater(a);
+  }
+  console.log(beaker);
+  console.log(water);
   count++;
+  gravity(a);                                   /*83 ~ 90 요소에 중력 적용*/
 }
 
 function clickmovesp (a) {                     /*37 ~ 43 마우스로 클릭하면 move함수로 마우스 위치로 요소이동*/

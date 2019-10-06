@@ -4,7 +4,7 @@ molecule,NH3,암모니아,17.03,-77.7,-33.4,0.73,0,0,not
 molecule,NaCl,염화나트륨,58.5,801,1413,2060,not,f5f5f5,ffffff
 molecule,HCl,염화수소,36.46,-144,-85,1.49,0,0,ffffff
 molecule,H2SO4,황산,98.079,10,337,1840,not,0,01A7F5
-molecule,H20,물,18.01528,0,99.98,997,0,0,0
+molecule,H20,water,18.01528,0,99.98,997,0,0,0
 molecule,H2,수소,2,-259.2,-252.9,0.0838,0,0,ffffff
 molecule,CO2,이산화탄소,44.01,-78.45,-56.55,1.976,0,0,ffffff
 molecule,CO,일산화탄소,28.01,-205,-191.5,1.14,0,0,ffffff
