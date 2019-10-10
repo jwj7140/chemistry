@@ -4,7 +4,7 @@ var aycrash = Array();
 var falls=Array();
 var al = Array();
 function gravity(n) {
-  ycrash[n] = 712;
+  ycrash[n] = 826;
   aycrash[n] = ycrash[n];
   var a;
   var b= -1;
@@ -53,7 +53,7 @@ function gravity(n) {
       sprite[n].setTexture(vapor);
       al[n] = 1;
       sprite[n].condition = "기체";
-    } else if (sprite[n].tem < 95  && n == water[water.indexOf(n)]) {
+    } else if (sprite[n].tem < 100  && n == water[water.indexOf(n)]) {
       var l = PIXI.Texture.fromImage('static/img/molecule/water.png');
       sprite[n].setTexture(l);
       al[n] = 0;
@@ -62,6 +62,9 @@ function gravity(n) {
 
       b=-1;
       for (a=0; a<sprite.length; a++) {
+        if (sprite[a] == 0) {
+          a++;
+        }
         if (sprite[n].x-sprite[a].x < sprite[a].width && sprite[n].x-sprite[a].x > -1*sprite[n].width) { /*n요소와 a요소의 x좌표가 가깝다면*/
 
           if (al[n] == 0) {
@@ -184,7 +187,7 @@ function gravity(n) {
       } else {
         if (al[n] == 0) {
           aycrash[n] = ycrash[n];
-          ycrash[n] = 712;   /*떨어지는 곳을 바닥으로 지정*/
+          ycrash[n] = 826;   /*떨어지는 곳을 바닥으로 지정*/
         } else {
           aycrash[n] = ycrash[n];
           ycrash[n] = 0;   /*떨어지는 곳을 바닥으로 지정*/
@@ -238,7 +241,7 @@ function flow (n) {
       else if (sprite[n].x-3 <0 ) {
         clearInterval(flows);
       }
-      else if (sprite[n].x+3 > 1903) {
+      else if (sprite[n].x+3 > 2114) {
         clearInterval(flows);
       }
     }, 50);
@@ -247,8 +250,8 @@ function flow (n) {
 
 function move (n,x,y) {         /*52 ~ 72 요소 이동 함수*/
   if (x != 99999) {
-    if (x+sprite[n].width>1903) {
-      sprite[n].x  = 1903-sprite[n].width;
+    if (x+sprite[n].width>2114) {
+      sprite[n].x  = 2114-sprite[n].width;
       // console.log("way!1");
       // sprite.x = 1902-sprite.width;
     } else if (x<0) {
@@ -260,8 +263,8 @@ function move (n,x,y) {         /*52 ~ 72 요소 이동 함수*/
     }
   }
   if (y != 99999) {
-    if (y+sprite[n].height>712) {
-      sprite[n].y  = 712-sprite[n].height;
+    if (y+sprite[n].height>826) {
+      sprite[n].y  = 826-sprite[n].height;
     } else if (y<0) {
       sprite[n].y = 0;
       // console.log("way!2");

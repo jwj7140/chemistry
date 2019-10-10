@@ -69,7 +69,7 @@ function clickmovesp (a) {                     /*37 ~ 43 마우스로 클릭하�
 window.addEventListener('load', function() {
   var a;
   var laboratory = document.getElementById("laboratory");
-  var renderer = PIXI.autoDetectRenderer(1903, 712, {backgroundColor : 0x1099bb});  /*캔버스 생성*/
+  var renderer = PIXI.autoDetectRenderer(2114, 826, {backgroundColor : 0x87cefa});  /*캔버스 생성*/
   laboratory.appendChild(renderer.view);     /*laboratory에 추가*/
   // create the root of the scene graph
   var stage = new PIXI.Container();
@@ -79,6 +79,9 @@ window.addEventListener('load', function() {
     // stage.addChild(back);
     if (sprite.length > 0) {
       for (a=0; a<sprite.length; a++) {
+        if (sprite[a] == 0) {
+          a++;
+        }
         stage.addChild(sprite[a]);        /*반복문으로 요소 전체 애니메이션*/
       }
     }
@@ -93,6 +96,6 @@ window.addEventListener('load', function() {
   }
 });
 
-function deletesprite (a) {
-
+function deletesprite (n) {
+  sprite[n] = 0;
 }

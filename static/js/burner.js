@@ -28,8 +28,7 @@ function burneron(l, bn) {
   var g;
   burnerfor = setInterval(function () {
     for (g=0; g<water.length; g++) {
-      if (sprite[water[g]].y+sprite[water[g]].height < sprite[l].y) {
-        console.log("gggggggggggg");
+      if (sprite[water[g]].y+sprite[water[g]].height < sprite[l].y+50) {
         if (sprite[water[g]].y > sprite[l].y-120) {
           if (sprite[water[g]].x > sprite[l].x-40) {
             if (sprite[water[g]].x+sprite[water[g]].width < sprite[l].x+sprite[l].width+40) {
