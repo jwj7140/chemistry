@@ -1,8 +1,6 @@
 var move = Array();
 var count = 0;
 var sprite = Array();
-var water = Array();
-var beaker = Array();
 var mx,my;
 document.onmousemove = function(e){                 /*마우스의 좌표 감지*/
   mx=e.pageX;
@@ -21,6 +19,7 @@ document.onmouseup = function() {                   /*10 ~ 19 요소를 마우�
 function create(Json) {                 /*21 ~ 36 laboratory에서 요소를 생성하는 함수*/
   var a = count;
   move[a] = 0;
+  xcrash[a] = 0;
   sprite[a] = PIXI.Sprite.fromImage(`static/img/${Json.종류}/${Json.이름}.png`);  /*24 ~ 31 pixi.js로 캔버스에 요소 생성*/
   sprite[a].position.set(100,200);
   sprite[a].interactive = true;
@@ -32,10 +31,16 @@ function create(Json) {                 /*21 ~ 36 laboratory에서 요소를 생
   if (Json.이름 == "beaker") {
     createbeaker(a);
   } else if (Json.이름 == "water") {
+    sprite[a].scale.x  = 0.9;
+    sprite[a].scale.y  = 0.9;
+    sprite[a].tem = backtem;
     createwater(a);
+  } else if (Json.이름 == "burner") {
+    createburner(a);
+    sprite[a].on('click', function() {
+        burnerswitch(a);
+    });
   }
-  console.log(beaker);
-  console.log(water);
   count++;
   gravity(a);                                   /*83 ~ 90 요소에 중력 적용*/
 }
@@ -48,6 +53,10 @@ function clickmovesp (a) {                     /*37 ~ 43 마우스로 클릭하�
   }
 }
 
+// var back = PIXI.Sprite.fromImage(`static/img/back.png`);
+// back.position.set(0,0);
+// back.interactive = true;
+
 window.addEventListener('load', function() {
   var a;
   var laboratory = document.getElementById("laboratory");
@@ -58,6 +67,7 @@ window.addEventListener('load', function() {
   // start animating
   animate();
   function animate() {                    /*54 ~ 63 애니메이션 함수*/
+    // stage.addChild(back);
     if (sprite.length > 0) {
       for (a=0; a<sprite.length; a++) {
         stage.addChild(sprite[a]);        /*반복문으로 요소 전체 애니메이션*/

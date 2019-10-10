@@ -1,90 +1,248 @@
+var xcrash = Array();
+var ycrash = Array();
+var aycrash = Array();
 var falls=Array();
 function gravity(n) {
-  var crash = 712;
+  ycrash[n] = 712;
+  aycrash[n] = ycrash[n];
   var a;
   var b= -1;
+  var c= 0;
   falls[n] = 0;
   var delta = 30;
   var gravity = 5;
+  var al = 0;
   setInterval (function() {
     if (move[n] == 0) {                             /*10 ~ 21 마우스로 이동중이 아니라면*/
-      if (sprite[n].height+sprite[n].y>crash) {      /*11 ~ 14 충돌위치에 정치했다면*/
-        move(n, 99999, crash-sprite[n].height+1);  /*y 좌표를 충돌위치로 이동*/
-        falls[n]=0;
-      } else {  /*14 ~ 20 움직이고 있다면*/
-        falls[n] = Math.min(10000, Math.max(-10000, falls[n] + gravity * delta / 100)); /*현재위치에 가속도 붙여서 내림*/
-        if (crash-sprite[n].y < falls[n]) {
-          falls[n] = 1;
+      if (al == 0) {
+
+
+
+        if (sprite[n].height+sprite[n].y>ycrash[n]) {      /*11 ~ 14 충돌위치에 정치했다면*/
+          move(n, 99999, ycrash[n]-sprite[n].height+1);  /*y 좌표를 충돌위치로 이동*/
+          falls[n]=0;
+        } else {  /*14 ~ 20 움직이고 있다면*/
+          falls[n] = Math.min(1000, Math.max(-1000, falls[n] + gravity * delta / 100)); /*현재위치에 가속도 붙여서 내림*/
+
+          move(n, 99999, sprite[n].y+falls[n]);   /*falls적용해서 이동*/
         }
-        move(n, 99999, sprite[n].y+falls[n]);   /*falls적용해서 이동*/
+
+
+
+      } else {
+
+
+
+        if (sprite[n].y<ycrash[n] || sprite[n].y==ycrash[n]) {      /*11 ~ 14 충돌위치에 정치했다면*/
+          move(n, 99999, ycrash[n]+1);  /*y 좌표를 충돌위치로 이동*/
+          falls[n]=0;
+        } else {  /*14 ~ 20 움직이고 있다면*/
+          falls[n] = Math.min(1000, Math.max(-1000, falls[n] + gravity * delta / 1000)); /*현재위치에 가속도 붙여서 내림*/
+
+          move(n, 99999, sprite[n].y-falls[n]);   /*falls적용해서 이동*/
+        }
+
+
+
       }
     }
       b=-1;
       for (a=0; a<sprite.length; a++) {
         if (sprite[n].x-sprite[a].x < sprite[a].width && sprite[n].x-sprite[a].x > -1*sprite[n].width) { /*n요소와 a요소의 x좌표가 가깝다면*/
-          if (sprite[n].y+sprite[n].height > sprite[a].y && sprite[n].y < sprite[a].y) {  /*22 ~ 28 n의 위치가  a의 위치 바로 밑에 있다면*/
-            if (n == water[water.indexOf(n)] && a == beaker[beaker.indexOf(a)]) {
-            } else
-            if (n == beaker[beaker.indexOf(n)] && a == water[water.indexOf(a)]) {
-                  // if (n != a) {
-                  //   b=a;
-                  //   crash = sprite[a].y+15;    /*y의 충돌점 변경*/
-                  // }
-            } else
-            if (n != water[water.indexOf(n)] || a != beaker[beaker.indexOf(a)]) {
-              if (n != a) {
-                b=1;
-                crash = sprite[a].y;    /*y의 충돌점 변경*/
-              }
-            }
-          } else {
-            if (sprite[a].y + sprite[a].height > sprite[n].y && sprite[a].y-sprite[a].height < sprite[n].y + sprite[n].height && sprite[n].y-sprite[a].y < sprite[a].height-30 && sprite[n].y-sprite[a].y > -1*sprite[n].height+30) {
-              /*29줄: 약간의 뻘짓이 들어있는 x쪽 충돌기준(y)*/
+          if (al == 0) {
+
+
+
+            if (sprite[n].y+sprite[n].height > sprite[a].y && sprite[n].y < sprite[a].y) {  /*22 ~ 28 n의 위치가  a의 위치 바로 위에 있다면*/
               if (n == water[water.indexOf(n)] && a == beaker[beaker.indexOf(a)]) {
               } else
               if (n == beaker[beaker.indexOf(n)] && a == water[water.indexOf(a)]) {
+                    // if (n != a) {
+                    //   b=a;
+                    //   ycrash[n] = sprite[a].y+15;    /*y의 충돌점 변경*/
+                    // }
               } else
               if (n != water[water.indexOf(n)] || a != beaker[beaker.indexOf(a)]) {
                 if (n != a) {
+                  b=1;
                   if (move[n] == 0) {
-
-                    if (sprite[n].x > sprite[a].x) {        //왼쪽에서 밀림
-                      move(n, sprite[a].x+sprite[a].width, 99999);
-                    } else if (sprite[n].x < sprite[a].x) {   //오른쪽에서 밀림
-                      move(n, sprite[a].x-sprite[n].width, 99999);
-                    }
+                    aycrash[n] = ycrash[n];
                   }
+                  ycrash[n] = sprite[a].y;    /*y의 충돌점 변경*/
+                }
+              }
+            } else {
+              if (sprite[a].y + sprite[a].height > sprite[n].y && sprite[a].y-sprite[a].height < sprite[n].y + sprite[n].height && sprite[n].y-sprite[a].y < sprite[a].height-30 && sprite[n].y-sprite[a].y > -1*sprite[n].height+30) {
+                /*29줄: 약간의 뻘짓이 들어있는 x쪽 충돌기준(y)*/
+                if (n == water[water.indexOf(n)] && a == beaker[beaker.indexOf(a)]) {
+                } else
+                if (n == beaker[beaker.indexOf(n)] && a == water[water.indexOf(a)]) {
+                } else
+                if (n != water[water.indexOf(n)] || a != beaker[beaker.indexOf(a)]) {
+                  if (n != a) {
+                    if (move[n] == 0) {
+                      if (sprite[n].x > sprite[a].x) {        //왼쪽에서 밀림
+                        move(n, sprite[a].x+sprite[a].width, 99999);
+                      } else if (sprite[n].x < sprite[a].x) {   //오른쪽에서 밀림
+                        move(n, sprite[a].x-sprite[n].width, 99999);
+                      }
+                      xcrash[n] = 1;
+                    }
+                  } else {
+                    xcrash[n] = 0;
+                  }
+                } else {
+                  xcrash[n] = 0;
                 }
               }
             }
+
+
+
+
+          } else {
+
+
+
+            if (sprite[n].y < sprite[a].y+sprite[a].height && sprite[n].y > sprite[a].y) {  /*22 ~ 28 n의 위치가  a의 위치 바로 밑에 있다면*/
+              if (n == water[water.indexOf(n)] && a == water[water.indexOf(a)]) {
+                if (n != a) {
+                  b=1;
+                  if (move[n] == 0) {
+                    aycrash[n] = ycrash[n];
+                  }
+                  ycrash[n] = sprite[a].y+sprite[a].height;    /*y의 충돌점 변경*/
+                }
+              }
+            } else {
+              // if (sprite[a].y < sprite[n].y-sprite[n].height && sprite[a].y+sprite[a].height*2 > sprite[n].y && sprite[n].y-sprite[a].y < sprite[a].height-30 && sprite[n].y-sprite[a].y > -1*sprite[n].height+30) {
+              //   /*29줄: 약간의 뻘짓이 들어있는 x쪽 충돌기준(y)*/
+              //   if (n == water[water.indexOf(n)] && a == beaker[beaker.indexOf(a)]) {
+              //   } else
+              //   if (n == beaker[beaker.indexOf(n)] && a == water[water.indexOf(a)]) {
+              //   } else
+              //   if (n != water[water.indexOf(n)] || a != beaker[beaker.indexOf(a)]) {
+              //     if (n != a) {
+              //       if (move[n] == 0) {
+              //         if (sprite[n].x > sprite[a].x) {        //왼쪽에서 밀림
+              //           move(n, sprite[a].x+sprite[a].width, 99999);
+              //         } else if (sprite[n].x < sprite[a].x) {   //오른쪽에서 밀림
+              //           move(n, sprite[a].x-sprite[n].width, 99999);
+              //         }
+              //         xcrash[n] = 1;
+              //       }
+              //     } else {
+              //       xcrash[n] = 0;
+              //     }
+              //   } else {
+              //     xcrash[n] = 0;
+              //   }
+              // }
+            }
+
+
+
+
+
           }
         }
+
         if (sprite[n].x > sprite[a].x && sprite[n].x+sprite[n].width < sprite[a].x+sprite[a].width  && sprite[n].y > sprite[a].y && sprite[n].y+sprite[n].height-30 < sprite[a].y+sprite[a].height    && n == water[water.indexOf(n)] && a == beaker[beaker.indexOf(a)]) {
-          b = 1;
-          console.log("sdadsadsadasdsad");
-          crash = sprite[a].y + sprite[a].height-30;
-          if (sprite[n].x-sprite[a].x < 30) {
-            sprite[n].x = sprite[a].x + 30;
-          }
-          if (sprite[a].x+sprite[a].width - sprite[n].x+sprite[n].width < 70) {
-            console.log("dfg");
-            sprite[n].x = sprite[n].width + sprite[a].x + sprite[a].width-70;
+          //비커속 물 파트
+          if (al == 0) {
+            b = 1;
+            ycrash[n] = sprite[a].y + sprite[a].height-30;
+            if (move[n] == 0) {
+              aycrash[n] = ycrash[n];
+            }
+            if (sprite[n].x-sprite[a].x < 30) {
+              move(n, sprite[a].x + 30, 99999);
+            }
+            if (sprite[a].x+sprite[a].width - sprite[n].x+sprite[n].width < 80) {
+              move(n, sprite[n].width + sprite[a].x + sprite[a].width-80, 99999);
+            }
           }
         }
       }
+      if (sprite[n].tem > 100  && n == water[water.indexOf(n)]) {     //수중기 변화부분
+        var vapor = PIXI.Texture.fromImage('static/img/molecule/water-a.png');
+        sprite[n].setTexture(vapor);
+        al = 1;
+      } else if (sprite[n].tem < 100  && n == water[water.indexOf(n)]) {
+        var l = PIXI.Texture.fromImage('static/img/molecule/water.png');
+        sprite[n].setTexture(l);
+        al = 0;
+      }
+
       if (b != -1) {          /*y가 아무데도 충돌하지 않았다면*/
       } else {
-        crash = 712;   /*떨어지는 곳을 바닥으로 지정*/
+        if (al == 0) {
+          aycrash[n] = ycrash[n];
+          ycrash[n] = 712;   /*떨어지는 곳을 바닥으로 지정*/
+        } else {
+          aycrash[n] = ycrash[n];
+          ycrash[n] = 0;   /*떨어지는 곳을 바닥으로 지정*/
+        }
+      }
+      if (aycrash[n] != ycrash[n] && move[n] == 0 && n == water[water.indexOf(n)]) {
+        console.log("sss");
+        flow(n);
+      }
+
+      c++;
+      if (c == 20) {
+        c=0;
+        if (sprite[n].tem > backtem) {
+          sprite[n].tem -= 1.5;
+        } else {
+          sprite[n].tem = backtem;
+        }
       }
   }, 50)
+}
+
+function flow (n) {
+  var ar = Math.floor(Math.random() * 2);
+  var dis = sprite[n].width;
+  var flows;
+  flows = setInterval (function() {
+    console.log("ggggg");
+    dis -= 3;
+    if (ar == 0) {
+      move(n, sprite[n].x-3, 99999);
+    } else if (ar == 1) {
+      move(n, sprite[n].x+3, 99999);
+    }
+
+    if (xcrash[n] == 1) {
+      clearInterval(flows);
+      console.log("xxxxx");
+    }
+    else if (dis < 0) {
+      clearInterval(flows);
+      console.log("dddddd");
+    }
+    else if (aycrash[n] != ycrash[n] && move[n] == 0) {
+      clearInterval(flows);
+      console.log("aaaaaa");
+    }
+    else if (sprite[n].x-3 <0 ) {
+      clearInterval(flows);
+    }
+    else if (sprite[n].x+3 > 1903) {
+      clearInterval(flows);
+    }
+  }, 50);
 }
 
 function move (n,x,y) {         /*52 ~ 72 요소 이동 함수*/
   if (x != 99999) {
     if (x+sprite[n].width>1903) {
-          // console.log("way!1");
-          // sprite.x = 1902-sprite.width;
+      sprite[n].x  = 1903-sprite[n].width;
+      // console.log("way!1");
+      // sprite.x = 1902-sprite.width;
     } else if (x<0) {
+      sprite[n].x  = 0;
       // console.log("way!2");
       // sprite.x = 1;
     } else {
@@ -92,11 +250,14 @@ function move (n,x,y) {         /*52 ~ 72 요소 이동 함수*/
     }
   }
   if (y != 99999) {
-  if (y<0) {
-    // console.log("way!2");
-    // sprite.x = 1;
-  } else {
-    sprite[n].y = y;
-  }
+    if (y+sprite[n].height>712) {
+      sprite[n].y  = 712-sprite[n].height;
+    } else if (y<0) {
+      sprite[n].y = 0;
+      // console.log("way!2");
+      // sprite.x = 1;
+    } else {
+      sprite[n].y = y;
+    }
   }
 }

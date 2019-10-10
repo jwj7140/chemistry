@@ -1,3 +1,5 @@
+var water = Array();
+var beaker = Array();
 var bc = 0;
 var wc = 0;
 
