@@ -33,8 +33,9 @@ function burneron(l, bn) {
         if (sprite[water[g]].y > sprite[l].y-120) {
           if (sprite[water[g]].x > sprite[l].x-40) {
             if (sprite[water[g]].x+sprite[water[g]].width < sprite[l].x+sprite[l].width+40) {
-              sprite[water[g]].tem += 8;
-              console.log("gggggggggggg");
+              if (sprite[water[g]].tem < 250) {
+                sprite[water[g]].tem += 8;
+              }
             }
           }
         }
