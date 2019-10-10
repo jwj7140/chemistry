@@ -18,9 +18,11 @@ document.onmouseup = function() {                   /*10 ~ 19 요소를 마우�
 
 function create(Json) {                 /*21 ~ 36 laboratory에서 요소를 생성하는 함수*/
   var a = count;
+  sprite[n].rname = Json.이름;
+  sprite[n].imgad = `static/img/${Json.종류}/${Json.이름}.png`;
   move[a] = 0;
   xcrash[a] = 0;
-  sprite[a] = PIXI.Sprite.fromImage(`static/img/${Json.종류}/${Json.이름}.png`);  /*24 ~ 31 pixi.js로 캔버스에 요소 생성*/
+  sprite[a] = PIXI.Sprite.fromImage(imgad);  /*24 ~ 31 pixi.js로 캔버스에 요소 생성*/
   sprite[a].position.set(100,200);
   sprite[a].interactive = true;
   sprite[a].on('mousedown', function() {          /*요소를 클릭하면 이동시킴*/
@@ -29,13 +31,16 @@ function create(Json) {                 /*21 ~ 36 laboratory에서 요소를 생
     move[a] = 1;
   });
   if (Json.이름 == "beaker") {
+    sprite[n].condition = "고체";
     createbeaker(a);
   } else if (Json.이름 == "water") {
     sprite[a].scale.x  = 0.9;
     sprite[a].scale.y  = 0.9;
+    sprite[n].condition = "액체";
     sprite[a].tem = backtem;
     createwater(a);
   } else if (Json.이름 == "burner") {
+    sprite[n].condition = "고체";
     createburner(a);
     sprite[a].on('click', function() {
         burnerswitch(a);
