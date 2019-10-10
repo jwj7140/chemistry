@@ -95,7 +95,3 @@ window.addEventListener('load', function() {
     renderer.render(stage);
   }
 });
-
-function deletesprite (n) {
-  sprite[n] = 0;
-}

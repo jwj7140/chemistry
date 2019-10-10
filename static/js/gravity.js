@@ -62,9 +62,6 @@ function gravity(n) {
 
       b=-1;
       for (a=0; a<sprite.length; a++) {
-        if (sprite[a] == 0) {
-          a++;
-        }
         if (sprite[n].x-sprite[a].x < sprite[a].width && sprite[n].x-sprite[a].x > -1*sprite[n].width) { /*n요소와 a요소의 x좌표가 가깝다면*/
 
           if (al[n] == 0) {

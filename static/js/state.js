@@ -42,7 +42,6 @@ function selector (n) {
     state.innerHTML= `
       <h1>${sprite[n].rname}</h1>
       <img src="${sprite[n].imgad}" id="condition_img">
-      <button type="button" name="button" id="delbutton" onmouseup="deletesprite ();">삭제하기</button>
       상태: ${sprite[n].condition}<br>
       온도: ${sprite[n].tem}<br>
       위치: x=${sprite[n].x}, y=${sprite[n].y}
