@@ -45,6 +45,7 @@ function selector (n) {
       상태: ${sprite[n].condition}<br>
       온도: ${sprite[n].tem}<br>
       위치: x=${sprite[n].x}, y=${sprite[n].y}
+
     `
   }, 50)
 }

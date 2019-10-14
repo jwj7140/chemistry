@@ -191,7 +191,6 @@ function gravity(n) {
         }
       }
       if (aycrash[n] != ycrash[n] && move[n] == 0 && n == water[water.indexOf(n)]) {
-        console.log("sss");
         flow(n);
       }
 
@@ -215,7 +214,6 @@ function flow (n) {
     var dis = sprite[n].width;
     var flows;
     flows = setInterval (function() {
-      console.log("ggggg");
       dis -= 3;
       if (ar == 0) {
         move(n, sprite[n].x-3, 99999);
@@ -225,15 +223,12 @@ function flow (n) {
 
       if (xcrash[n] == 1) {
         clearInterval(flows);
-        console.log("xxxxx");
       }
       else if (dis < 1) {
         clearInterval(flows);
-        console.log("dddddd");
       }
       else if (aycrash[n] != ycrash[n] && move[n] == 0) {
         clearInterval(flows);
-        console.log("aaaaaa");
       }
       else if (sprite[n].x-3 <0 ) {
         clearInterval(flows);
