@@ -2,7 +2,11 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "request": "^2.88.0"
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "path": "^0.12.7",
+    "request": "^2.88.0",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.2"

@@ -3,6 +3,7 @@ var ycrash = Array();
 var aycrash = Array();
 var falls=Array();
 var al = Array();
+
 function gravity(n) {
   ycrash[n] = 826;
   aycrash[n] = ycrash[n];
@@ -15,7 +16,7 @@ function gravity(n) {
   var gravity = 5;
   setInterval (function() {
     if (move[n] == 0) {                             /*10 ~ 21 마우스로 이동중이 아니라면*/
-      if (al[n] == 0) {
+      if (al[n] == 0) {                             //액체일 경우
 
 
 
@@ -30,7 +31,7 @@ function gravity(n) {
 
 
 
-      } else {
+      } else {                                    //기체일 경우
 
 
 
